@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Um presente especial para o amor da minha vida. Feliz aniversário.">
+  <title>Para o Amor da Minha Vida ❤️</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Favicon de coração -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+</head>
+<body>
+
+  <!-- ── Partículas de fundo ───────────────────────────────── -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ── Navegação ─────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#galeria">Fotos</a></li>
+      <li><a href="#cartas">Cartas</a></li>
+      <li><a href="#contador">Contador</a></li>
+      <li><a href="#carta-final">Carta</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Botão de Música ───────────────────────────────────── -->
+  <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Música">
+    ♫
+  </button>
+  <iframe
+    id="youtube-player"
+    title="Música do site"
+    src="https://www.youtube.com/embed/5OoOIgMCaBE?enablejsapi=1&autoplay=0&loop=1&playlist=5OoOIgMCaBE"
+    style="position: fixed; width: 1px; height: 1px; border: 0; opacity: 0; pointer-events: none;"
+    allow="autoplay"
+    aria-hidden="true">
+  </iframe>
+
+  <!-- ============================================================
+       1. TELA INICIAL (HERO)
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-heart">❤️</div>
+    <h1 class="hero-title">Para o Amor da Minha Vida</h1>
+    <p class="hero-subtitle">
+      Hoje comemoramos seu aniversario Minha princesa
+    </p>
+    <button class="hero-btn" onclick="startExperience()">
+      Começar nossa história ❤️
+    </button>
+  </section>
+
+  <!-- ============================================================
+       2. NOSSA HISTÓRIA (TIMELINE)
+       ============================================================ -->
+  <section id="historia">
+    <h2 class="section-title reveal"><span class="accent">3 anos</span> de nós</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-subtitle reveal">
+      Cada momento que vivemos juntos escreveu mais um capítulo da nossa história.
+    </p>
+    <div class="timeline" id="timeline-container">
+      <!-- Itens gerados pelo JavaScript via CONFIG.timeline -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. GALERIA DE FOTOS
+       ============================================================ -->
+  <section id="galeria">
+    <h2 class="section-title reveal">Nosso <span class="accent">álbum</span></h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-subtitle reveal">
+      Cada foto guarda um pedaço da nossa história.
+    </p>
+
+
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Itens gerados pelo JavaScript via CONFIG.fotos -->
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Foto">
+    </div>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <!-- ============================================================
+       4. CARTAS PARA ELA
+       ============================================================ -->
+  <section id="cartas">
+    <h2 class="section-title reveal">Algumas coisas que eu nunca quero<br>deixar de <span class="accent">te dizer...</span></h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-subtitle reveal">
+      Clique em cada carta para ler a mensagem que eu escrevi para você.
+    </p>
+    <div class="cards-grid" id="cards-grid">
+      <!-- Itens gerados pelo JavaScript via CONFIG.cartas -->
+    </div>
+  </section>
+
+  <!-- Modal de carta -->
+  <div class="card-modal" id="card-modal" onclick="closeCardModal()">
+    <div class="card-modal-content" onclick="event.stopPropagation()">
+      <div class="card-modal-icon">💌</div>
+      <p class="card-modal-text" id="card-modal-text"></p>
+      <button class="card-modal-close" onclick="closeCardModal()">Fechar ❤️</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5. CONTADOR
+       ============================================================ -->
+  <section class="counter-section" id="contador">
+    <h2 class="section-title reveal">Estamos juntos <span class="accent">há...</span></h2>
+    <div class="section-divider reveal"></div>
+    <div class="counter-grid reveal">
+      <div class="counter-item">
+        <div class="counter-number" id="counter-years">0</div>
+        <div class="counter-label">Anos</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="counter-months">0</div>
+        <div class="counter-label">Meses</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="counter-days">0</div>
+        <div class="counter-label">Dias</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="counter-hours">0</div>
+        <div class="counter-label">Horas</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="counter-minutes">0</div>
+        <div class="counter-label">Minutos</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="counter-seconds">0</div>
+        <div class="counter-label">Segundos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. SURPRESA
+       ============================================================ -->
+  <section class="surprise-section" id="surprise-section">
+    <h2 class="section-title reveal">Tenho uma surpresa para <span class="accent">você</span></h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="surprise-container reveal">
+      <div id="surprise-btn-container">
+        <p class="surprise-question">Você quer descobrir?</p>
+        <button class="surprise-btn" onclick="revealSurprise()">SIM ❤️</button>
+      </div>
+
+      <div class="surprise-reveal" id="surprise-reveal">
+        <p class="surprise-message" id="surprise-message"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. CARTA FINAL
+       ============================================================ -->
+  <section class="letter-section" id="carta-final">
+    <h2 class="section-title reveal">Para <span class="accent">você...</span></h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="letter-container reveal">
+      <p class="letter-text" id="letter-text">
+        <!-- Texto gerado pelo JavaScript via CONFIG.cartaFinal -->
+      </p>
+      <p class="letter-signature" id="letter-signature"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       9. FINAL
+       ============================================================ -->
+  <section class="finale-section" id="final">
+    <div class="hearts-container" id="hearts-container"></div>
+    <h2 class="finale-title reveal">Feliz aniversário, meu amor ❤️</h2>
+    <p class="finale-quote reveal">Eu te escolheria em todas as vidas.</p>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>Feito com <span>Amor</span> para a pessoa mais especial do mundo Eu te amo muito Rafaella!!!.</p>
+  </footer>
+
+  <!-- ── JavaScript ────────────────────────────────────────── -->
+  <script src="script.js"></script>
+
+</body>
+</html>
